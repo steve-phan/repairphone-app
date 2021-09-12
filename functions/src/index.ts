@@ -1,12 +1,14 @@
 import * as functions from 'firebase-functions';
 
 import express from 'express';
-
+import cors from 'cors';
+import { route } from './routes';
 const app = express();
 
-export const helloWorld = functions
-  .region('europe-west3')
-  .https.onRequest((request, response) => {
-    functions.logger.info('Hello logs!', { structuredData: true });
-    response.send('Hello from Firebase!');
-  });
+app.use(cors());
+
+const handler = functions.region('europe-west3');
+
+route(app);
+
+export const api = handler.https.onRequest(app);
