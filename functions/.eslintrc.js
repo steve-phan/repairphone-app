@@ -28,5 +28,9 @@ module.exports = {
     quotes: [1, 'single'],
     'import/no-unresolved': 0,
     'object-curly-spacing': [1, 'always', { objectsInObjects: false }],
+    'max-len': [2, 160, 2],
+    'no-unused-vars': 1,
+    '@typescript-eslint/no-unused-vars': 1,
+    'no-tabs': 1,
   },
 };

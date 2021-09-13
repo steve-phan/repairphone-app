@@ -1,5 +1,5 @@
-import * as admin from 'firebase-admin';
-import * as serviceAccount from './serviceAccountKey.json';
+import admin from 'firebase-admin';
+import serviceAccount from './serviceAccountKey.json';
 
 const params = {
   type: serviceAccount.type,
@@ -19,6 +19,7 @@ admin.initializeApp({
   databaseURL: 'https://vietkid-3cd0b.firebaseio.com',
 });
 
-const db = admin.firestore();
+const db: FirebaseFirestore.Firestore = admin.firestore();
+const auth: admin.auth.Auth = admin.auth();
 
-export default { admin, db };
+export { db, auth };

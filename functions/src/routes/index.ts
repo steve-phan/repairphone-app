@@ -1,6 +1,9 @@
 import { Express } from 'express';
-import usersRouter from './users';
+
+import { signup, deleteAll } from './users';
 
 export const route = (app: Express) => {
-  app.use('/user', usersRouter);
+  // users routes
+  app.post('/signup', signup);
+  app.get('/delete', deleteAll);
 };
