@@ -1,14 +1,22 @@
 import React from 'react';
-import { Drawer, Hidden } from '@material-ui/core';
+import { Drawer, Hidden, DrawerProps } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import { NavOpenProps } from '../Layout';
 import Menu from './Menu';
 
-const DesktopDrawer = styled(Drawer)(({ theme }) => ({
+interface DesktopDrawerProps extends DrawerProps {
+  openmobile?: boolean;
+  test?: string;
+}
+
+const DesktopDrawer = styled(Drawer, {
+  shouldForwardProp: (prop) => prop !== 'openmobile',
+})<DesktopDrawerProps>(({ theme, openmobile, test, ...rest }) => ({
   '& .MuiDrawer-paper': {
     position: 'relative',
     transition: 'width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms',
     overflowX: 'hidden',
+    width: openmobile ? '256px' : '55px',
     [theme.breakpoints.up('sm')]: {
       zIndex: 'auto',
     },
@@ -37,12 +45,14 @@ const Sidebar = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
       </Hidden>
       <Hidden smDown>
         <DesktopDrawer
+          openmobile={openMobile}
+          test='test'
           anchor='left'
           open /* Always OPEN when it's not hidden */
           variant='persistent'
           PaperProps={{
             sx: {
-              width: openMobile ? 256 : 55,
+              // width: openMobile ? 256 : 55,
               height: 'calc(100% - 64px)',
             },
           }}
