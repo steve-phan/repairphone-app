@@ -1,9 +1,10 @@
 import React from 'react';
+import PageContainer from '../../components/shared/PageContainer';
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Hello from Dashboard</h1>
-    </div>
+    <PageContainer>
+      <h1>Hello from Dashboard lorem600</h1>
+    </PageContainer>
   );
 };
 

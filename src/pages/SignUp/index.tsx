@@ -4,6 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import PageContainer from '../../components/shared/PageContainer';
 
 const schema = yup.object().shape({
   email: yup.string().email('Enter a valid email').required(),
@@ -25,7 +26,7 @@ const SignUp = () => {
   const onSubmit = (data: any) => console.log(data);
 
   return (
-    <div>
+    <PageContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name='name'
@@ -99,7 +100,7 @@ const SignUp = () => {
           Submit
         </Button>
       </form>
-    </div>
+    </PageContainer>
   );
 };
 export default SignUp;

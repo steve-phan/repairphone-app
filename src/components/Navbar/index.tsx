@@ -12,28 +12,31 @@ import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import { Link as RouterLink } from 'react-router-dom';
 import { NavOpenProps } from '../Layout';
 
-export interface OpenProps {
-  open: boolean;
-}
-
-const Navbar = ({ setMobileNavOpen, ...rest }: NavOpenProps) => {
+const Navbar = ({ setMobileNavOpen, openMobile, ...rest }: NavOpenProps) => {
   return (
     <AppBar elevation={0} {...rest}>
       <Toolbar>
-        <RouterLink to='/'>Repairphone</RouterLink>
+        <IconButton
+          color='inherit'
+          onClick={() => setMobileNavOpen(!openMobile)}
+          size='large'
+        >
+          <MenuIcon />
+        </IconButton>
+        {/* <RouterLink to='/'>Repairphone</RouterLink> */}
         <Box sx={{ flexGrow: 1 }} />
-        <Hidden lgDown>
-          <IconButton color='inherit' size='large'>
-            <Badge badgeContent={0} color='primary' variant='dot'>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton color='inherit' size='large'>
-            <InputIcon />
-          </IconButton>
-          <h5>link menu</h5>
-        </Hidden>
-        <Hidden lgUp>
+
+        <IconButton color='inherit' size='large'>
+          <Badge badgeContent={0} color='primary' variant='dot'>
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <IconButton color='inherit' size='large'>
+          <InputIcon />
+        </IconButton>
+        <h5>link menu</h5>
+
+        {/* <Hidden lgUp>
           <IconButton
             color='inherit'
             onClick={() => setMobileNavOpen(true)}
@@ -41,7 +44,7 @@ const Navbar = ({ setMobileNavOpen, ...rest }: NavOpenProps) => {
           >
             <MenuIcon />
           </IconButton>
-        </Hidden>
+        </Hidden> */}
       </Toolbar>
     </AppBar>
   );

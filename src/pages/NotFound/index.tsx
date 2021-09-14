@@ -1,7 +1,8 @@
 import React from 'react';
+import PageContainer from '../../components/shared/PageContainer';
 
 const NotFound = () => {
-  return <div>Page is not found ... uh Oh !! :)</div>;
+  return <PageContainer>Page is not found ... uh Oh !! :)</PageContainer>;
 };
 
 export default NotFound;

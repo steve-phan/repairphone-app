@@ -1,31 +1,24 @@
-import React, { useEffect, Dispatch } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Drawer,
-  Hidden,
-  List,
-  Typography,
-} from '@material-ui/core';
+import React from 'react';
+import { Drawer, Hidden } from '@material-ui/core';
+import { styled } from '@material-ui/core/styles';
 import { NavOpenProps } from '../Layout';
 import Menu from './Menu';
 
+const DesktopDrawer = styled(Drawer)(({ theme }) => ({
+  '& .MuiDrawer-paper': {
+    position: 'relative',
+    transition: 'width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms',
+    overflowX: 'hidden',
+    [theme.breakpoints.up('sm')]: {
+      zIndex: 'auto',
+    },
+  },
+}));
+
 const Sidebar = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (openMobile && setMobileNavOpen) {
-      setMobileNavOpen(false);
-    }
-  }, [location.pathname]);
-
   return (
     <>
-      <Hidden lgUp>
+      <Hidden smUp>
         <Drawer
           anchor='left'
           /* Closed "backdropClick" | "escapeKeyDown" */
@@ -39,25 +32,24 @@ const Sidebar = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
           }}
         >
           <h3>Drawer</h3>
-          <Menu />
+          <Menu openMobile={openMobile} setMobileNavOpen={setMobileNavOpen} />
         </Drawer>
       </Hidden>
-      <Hidden lgDown>
-        <Drawer
+      <Hidden smDown>
+        <DesktopDrawer
           anchor='left'
           open /* Always OPEN when it's not hidden */
           variant='persistent'
           PaperProps={{
             sx: {
-              width: 256,
-              top: 64,
+              width: openMobile ? 256 : 55,
               height: 'calc(100% - 64px)',
             },
           }}
         >
-          <h3>Drawwer ....</h3>
-          <Menu />
-        </Drawer>
+          {' '}
+          <Menu openMobile={openMobile} setMobileNavOpen={setMobileNavOpen} />
+        </DesktopDrawer>
       </Hidden>
     </>
   );

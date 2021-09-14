@@ -1,4 +1,11 @@
-import { Box, Button, Divider, List, Typography } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Divider,
+  List,
+  Typography,
+  useMediaQuery,
+} from '@material-ui/core';
 import {
   AccountBalance,
   Dashboard,
@@ -8,6 +15,8 @@ import {
 } from '@material-ui/icons';
 import React from 'react';
 import NavItem from './Navitem';
+import { NavOpenProps } from '../Layout';
+
 const items = [
   {
     href: '/app/dashboard',
@@ -51,7 +60,8 @@ const items = [
   },
 ];
 
-const Menu = () => {
+const Menu = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
+  const matches = useMediaQuery((theme: any) => theme.breakpoints.down('sm'));
   return (
     <Box
       sx={{
@@ -69,19 +79,24 @@ const Menu = () => {
               key={item.title}
               title={item.title}
               icon={item.icon}
+              setMobileNavOpen={setMobileNavOpen}
+              isMobile={matches}
             />
           ))}
         </List>
       </Box>
       <Box sx={{ flexGrow: 1 }} />
-      <Box
-        sx={{
-          backgroundColor: 'background.default',
-          m: 2,
-          p: 2,
-        }}
-      >
-        <Typography align='center' gutterBottom variant='h5'>
+      <Box>
+        <Typography
+          align='center'
+          gutterBottom
+          sx={{
+            backgroundColor: 'background.default',
+            m: (openMobile && 2) || 0,
+            p: (openMobile && 2) || 0,
+            fontSize: (openMobile && '16px') || 0,
+          }}
+        >
           BookAble24.de
         </Typography>
       </Box>

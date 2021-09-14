@@ -5,8 +5,7 @@ import routes from './routes';
 
 function App() {
   const content = useRoutes(routes);
-  console.log(content);
-  return <div className='App'>{content}</div>;
+  return <>{content}</>;
 }
 
 export default App;

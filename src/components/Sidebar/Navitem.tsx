@@ -1,19 +1,27 @@
+import React, { useState, useEffect } from 'react';
+import { Button, ListItem } from '@material-ui/core';
+import { type } from 'os';
 import {
-  NavLink as RouterLink,
   matchPath,
+  NavLink as RouterLink,
   useLocation,
 } from 'react-router-dom';
-import { Button, ListItem } from '@material-ui/core';
-import { Interface } from 'readline';
-import React from 'react';
+import { NavOpenProps } from '../Layout';
 
-interface ItemProps {
+interface ItemProps extends NavOpenProps {
   href: string;
   icon: any;
   title: string;
 }
 
-const NavItem = ({ href, icon: Icon, title, ...rest }: ItemProps) => {
+const NavItem = ({
+  setMobileNavOpen,
+  href,
+  icon: Icon,
+  title,
+  isMobile,
+  ...rest
+}: ItemProps) => {
   const location = useLocation();
 
   const active = href
@@ -28,6 +36,7 @@ const NavItem = ({ href, icon: Icon, title, ...rest }: ItemProps) => {
 
   return (
     <ListItem
+      onClick={() => isMobile && setMobileNavOpen(false)}
       disableGutters
       sx={{
         display: 'flex',
