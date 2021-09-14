@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { NavOpenProps } from '../Layout';
+import Menu from './Menu';
 
 const Sidebar = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
   const location = useLocation();
@@ -38,6 +39,7 @@ const Sidebar = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
           }}
         >
           <h3>Drawer</h3>
+          <Menu />
         </Drawer>
       </Hidden>
       <Hidden lgDown>
@@ -54,6 +56,7 @@ const Sidebar = ({ setMobileNavOpen, openMobile }: NavOpenProps) => {
           }}
         >
           <h3>Drawwer ....</h3>
+          <Menu />
         </Drawer>
       </Hidden>
     </>
