@@ -3,7 +3,7 @@ import PageContainer from '../../components/shared/PageContainer';
 const Dashboard = () => {
   return (
     <PageContainer>
-      <h1>Hello from Dashboard prewview</h1>
+      <h1>Hello from Dashboard new newn new</h1>
     </PageContainer>
   );
 };
